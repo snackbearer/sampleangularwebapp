@@ -29,7 +29,6 @@ export class productlistComponent {
       this.filteredproductList = this.productList;
       //this.listfilter = 'cart';
     }, error => console.error(error));
-
     
   }
 }

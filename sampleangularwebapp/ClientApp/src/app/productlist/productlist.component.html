@@ -5,7 +5,7 @@
 <p *ngIf="!filteredproductList"><em>Loading...</em></p>
 
 
-<p>filter2 <input /></p>
+<p>filter2 <input [(ngModel)]="listfilter" /></p>
 <table class='table' *ngIf="filteredproductList">
   <thead>
     <tr>
