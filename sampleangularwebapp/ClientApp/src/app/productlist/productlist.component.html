@@ -12,13 +12,19 @@
       <th>ID</th>
       <th>Code</th>
       <th>Name</th>
+      <th>Cost</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let productItem of filteredproductList">
-      <td>{{ productItem.productID }}</td>
+      <td> <a>
+              <!--[routerlink]="['/product', productItem.productId]"-->
+      
+  {{ productItem.productId }}
+</a></td>
       <td>{{ productItem.productCode }}</td>
       <td>{{ productItem.productName }}</td>
+      <td>{{ productItem.productCost }}</td>
     </tr>
   </tbody>
 </table>
