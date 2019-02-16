@@ -24,7 +24,7 @@ export class productlistComponent {
   }
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<ProductItem[]>(baseUrl + 'api/ProductList/ProductList').subscribe(result => {
+    http.get<ProductItem[]>(baseUrl + 'api/Product/Get').subscribe(result => {
       this.productList = result;
       this.filteredproductList = this.productList;
       //this.listfilter = 'cart';
@@ -37,4 +37,5 @@ interface ProductItem {
   productID: number;
   productCode: string;
   productName: string;
+  productCost: number;
 }
