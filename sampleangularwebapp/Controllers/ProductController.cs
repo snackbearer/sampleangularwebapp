@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using sampleangularwebapp.Models;
 
 namespace sampleangularwebapp.Controllers
 {
@@ -13,22 +14,40 @@ namespace sampleangularwebapp.Controllers
     {
         // GET: api/Product
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Product> Get()
         {
-            return new string[] { "value1", "value2" };
+            return null;
+            /*
+            var data = new sampledata.Data.Products();
+
+            return data.GetProducts().Select(p=>
+                new Product { ProductId = p.ProductId , ProductCode = p.ProductCode , ProductName = p.ProductName , ProductCost = p.ProductCost  });
+            */
         }
 
         // GET: api/Product/5
         [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        public Product Get(int id)
         {
-            return "value";
+            return null;
+            /*
+            var data = new sampledata.Data.Products();
+
+            var p = data.GetProduct(id);
+
+            return new Product { ProductId = p.ProductId, ProductCode = p.ProductCode , ProductName = p.ProductName , ProductCost = p.ProductCost  };
+            */
         }
 
         // POST: api/Product
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Product value)
         {
+            /*
+            var data = new sampledata.Data.Products();
+
+            data.SetProduct(new sampledata.Models.Product { ProductId = value.ProductId, ProductCode = value.ProductCode, ProductName = value.ProductName, ProductCost = value.ProductCost });
+            */
         }
 
         // PUT: api/Product/5
