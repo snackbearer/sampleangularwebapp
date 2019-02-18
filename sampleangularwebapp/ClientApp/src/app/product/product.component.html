@@ -1,4 +1,28 @@
+
+<p *ngIf="!product"><em>Loading...</em></p>
+
 <p>Product Item</p>
-<div>Product ID {{ ProductID }}</div>
-<div>Product Code {{ ProductCode }}</div>
-<div>Product Name {{ ProductName }}</div>
+<div *ngIf="product">
+  <div>Product ID {{ product.productId }}</div>
+  <div>Product Code {{ product.productCode }}</div>
+  <div>Product Name {{ product.productName }}</div>
+  <div>
+    Product ID
+    <input [(ngModel)]="product.productId" />
+  </div>
+  <div>
+    Product Code
+    <input [(ngModel)]="product.productCode" />
+  </div>
+  <div>
+    Product Name
+    <input [(ngModel)]="product.productName" />
+  </div>
+  <div>
+    Product Cost
+    <input [(ngModel)]="product.productCost" />
+  </div>
+  <button (click)="back()">back</button>
+  <button (click)='save()'>Save</button>
+
+</div>

@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { RouterModule, Routes } from '@angular/router';
 
 @Component({
   selector: 'productlist-data',
@@ -24,18 +25,11 @@ export class productlistComponent {
   }
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<ProductItem[]>(baseUrl + 'api/Product/GetAll').subscribe(result => {
+    http.get<ProductItem[]>(baseUrl + 'api/Product').subscribe(result => {
       this.productList = result;
       this.filteredproductList = this.productList;
       //this.listfilter = 'cart';
     }, error => console.error(error));
     
   }
-}
-
-interface ProductItem {
-  productId: number;
-  productCode: string;
-  productName: string;
-  productCost: number;
 }

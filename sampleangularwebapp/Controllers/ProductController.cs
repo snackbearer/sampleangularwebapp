@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using sampleangularwebapp.Models;
+using sampledata.Models;
 
 namespace sampleangularwebapp.Controllers
 {
@@ -14,14 +14,13 @@ namespace sampleangularwebapp.Controllers
     {
         // GET: api/Product
         
-        [HttpGet("[action]")]
-        public IEnumerable<Product> GetAll()
+        [HttpGet]
+        public IEnumerable<Product> Get()
         {
             
             var data = new sampledata.Data.Products();
 
-            return data.GetProducts().Select(p=>
-                new Product { ProductId = p.ProductId , ProductCode = p.ProductCode , ProductName = p.ProductName , ProductCost = p.ProductCost  });
+            return data.GetProducts();
             
         }
 
@@ -33,10 +32,14 @@ namespace sampleangularwebapp.Controllers
             var data = new sampledata.Data.Products();
 
             var p = data.GetProduct(id);
+            //var lst = new List<Product>();
 
-            return new Product { ProductId = p.ProductId, ProductCode = p.ProductCode , ProductName = p.ProductName , ProductCost = p.ProductCost  };
+            //lst.Add(new Product { ProductId = p.ProductId, ProductCode = p.ProductCode, ProductName = p.ProductName, ProductCost = p.ProductCost });
+            return p; // lst.First();
             
         }
+
+        
 
         // POST: api/Product
         [HttpPost]

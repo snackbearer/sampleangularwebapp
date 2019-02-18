@@ -46,6 +46,9 @@ namespace sampledata.Data
             else
             {
                 selectedProduct = context.Product.Where(p => p.ProductId == product.ProductId).First();
+                selectedProduct.ProductCode = product.ProductCode;
+                selectedProduct.ProductName = product.ProductName;
+                selectedProduct.ProductCost = product.ProductCost;
             }
             
             context.SaveChanges();
