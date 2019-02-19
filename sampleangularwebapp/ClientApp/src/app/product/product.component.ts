@@ -31,15 +31,19 @@ export class productComponent {
   save(): void {
 
     //http: HttpClient;
-    this.http.post(this.BaseURL + 'api/Product', this.product).toPromise().then(this.navigateProductList).catch(this.errorOut); 
+    this.http.post(this.BaseURL + 'api/Product', this.product).toPromise().then(this.navigateProductList).catch(this.errorOut);
+    
+    //this.router.navigate(['/productlist']); 
   }
 
-  navigateProductList(): void {
-    this.router.navigate(['/productlist']); 
+  navigateProductList(owner: productComponent): void {
+    
+    alert("Save complete!");
   }
 
   errorOut(error : Response): void {
     console.log(error);
+    alert("save failed for the following reason" + error.text);
   }
   ngOnInit() { }
   
