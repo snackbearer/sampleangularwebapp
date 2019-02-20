@@ -10,6 +10,7 @@
 
     <!-- Set this to true if you enable server-side prerendering -->
     <BuildServerSideRenderer>false</BuildServerSideRenderer>
+    <UserSecretsId>67cdf473-26cf-4440-9b3e-c8edb25bf02b</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -33,6 +34,11 @@
   <ItemGroup>
     <None Remove="ClientApp\src\app\productlist\productlist.component.ts" />
     <None Remove="ClientApp\src\app\product\product.component.ts" />
+    <None Remove="ClientApp\src\app\security\app-user-auth.ts" />
+    <None Remove="ClientApp\src\app\security\app-user-claim.ts" />
+    <None Remove="ClientApp\src\app\security\app-user.ts" />
+    <None Remove="ClientApp\src\app\security\login.component.ts" />
+    <None Remove="ClientApp\src\app\security\security.service.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -42,6 +48,11 @@
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\productlist\productlist.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\product\product.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\security\app-user-auth.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\security\app-user-claim.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\security\app-user.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\security\login.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\security\security.service.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

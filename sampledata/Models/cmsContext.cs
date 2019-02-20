@@ -15,10 +15,9 @@ namespace sampledata.Models
         {
         }
 
-        public virtual DbSet<Client> Client { get; set; }
-        public virtual DbSet<ClientOrder> ClientOrder { get; set; }
-        public virtual DbSet<ClientOrderDetail> ClientOrderDetail { get; set; }
         public virtual DbSet<Product> Product { get; set; }
+        public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<UserClaim> UserClaim { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -31,38 +30,7 @@ namespace sampledata.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Client>(entity =>
-            {
-                entity.Property(e => e.ClientId).HasColumnName("ClientID");
-
-                entity.Property(e => e.ClientName)
-                    .IsRequired()
-                    .HasMaxLength(50);
-
-                entity.Property(e => e.FirstName).HasMaxLength(50);
-
-                entity.Property(e => e.LastName).HasMaxLength(50);
-            });
-
-            modelBuilder.Entity<ClientOrder>(entity =>
-            {
-                entity.Property(e => e.ClientOrderId).HasColumnName("ClientOrderID");
-
-                entity.Property(e => e.DeliveryAddress).HasMaxLength(50);
-
-                entity.Property(e => e.OrderTotal).HasColumnType("money");
-            });
-
-            modelBuilder.Entity<ClientOrderDetail>(entity =>
-            {
-                entity.Property(e => e.ClientOrderDetailId).HasColumnName("ClientOrderDetailID");
-
-                entity.Property(e => e.ClientOrderId).HasColumnName("ClientOrderID");
-
-                entity.Property(e => e.DetailTotal).HasColumnType("money");
-
-                entity.Property(e => e.ProductId).HasColumnName("ProductID");
-            });
+            modelBuilder.HasAnnotation("ProductVersion", "2.2.2-servicing-10034");
 
             modelBuilder.Entity<Product>(entity =>
             {
@@ -73,6 +41,33 @@ namespace sampledata.Models
                 entity.Property(e => e.ProductCost).HasColumnType("money");
 
                 entity.Property(e => e.ProductName).HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.Property(e => e.Password)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.UserName)
+                    .IsRequired()
+                    .HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<UserClaim>(entity =>
+            {
+                entity.HasKey(e => e.ClaimId)
+                    .HasName("PK__UserClai__EF2E139BAA46A466");
+
+                entity.Property(e => e.ClaimId).ValueGeneratedNever();
+
+                entity.Property(e => e.ClaimType)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ClaimValue)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
             });
         }
     }
