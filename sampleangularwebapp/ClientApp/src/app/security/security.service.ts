@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
@@ -18,13 +18,13 @@ const httpOptions = {
 export class SecurityService {
   securityObject: AppUserAuth = new AppUserAuth();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
 
   login(entity: AppUser): Observable<AppUserAuth> {
     // Initialize security object
     this.resetSecurityObject();
 
-    return this.http.post<AppUserAuth>(API_URL + "login",
+    return this.http.post<AppUserAuth>(this.baseUrl + "/api/Security/login",
       entity, httpOptions).pipe(
         tap(resp => {
           // Use object assign to update the current object
