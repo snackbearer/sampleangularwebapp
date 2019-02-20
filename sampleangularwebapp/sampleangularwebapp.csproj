@@ -37,6 +37,9 @@
     <None Remove="ClientApp\src\app\security\app-user-auth.ts" />
     <None Remove="ClientApp\src\app\security\app-user-claim.ts" />
     <None Remove="ClientApp\src\app\security\app-user.ts" />
+    <None Remove="ClientApp\src\app\security\auth.guard.ts" />
+    <None Remove="ClientApp\src\app\security\has-claim.directive.ts" />
+    <None Remove="ClientApp\src\app\security\http-interceptor.module.ts" />
     <None Remove="ClientApp\src\app\security\login.component.ts" />
     <None Remove="ClientApp\src\app\security\security.service.ts" />
   </ItemGroup>
@@ -51,6 +54,9 @@
     <TypeScriptCompile Include="ClientApp\src\app\security\app-user-auth.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\security\app-user-claim.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\security\app-user.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\security\auth.guard.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\security\has-claim.directive.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\security\http-interceptor.module.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\security\login.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\security\security.service.ts" />
   </ItemGroup>

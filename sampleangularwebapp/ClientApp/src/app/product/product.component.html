@@ -1,28 +1,24 @@
-
 <p *ngIf="!product"><em>Loading...</em></p>
-
-<p>Product Item</p>
-<div *ngIf="product">
-  <div>Product ID {{ product.productId }}</div>
-  <div>Product Code {{ product.productCode }}</div>
-  <div>Product Name {{ product.productName }}</div>
-  <div>
-    Product ID
-    <input [(ngModel)]="product.productId" />
+<div *ngIf="product" class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Product Information</h3>
   </div>
-  <div>
-    Product Code
-    <input [(ngModel)]="product.productCode" />
+  <div class="panel-body">
+    <div class="form-group">
+      <label for="productCode">Product Code</label>
+      <input [(ngModel)]="product.productCode" />
+    </div>
+    <div class="form-group">
+      <label for="productName">Product Name</label>
+      <input [(ngModel)]="product.productName" />
+    </div>
+    <div class="form-group">
+      <label for="productCose">Product Cost</label>
+      <input [(ngModel)]="product.productCost" />
+    </div>
   </div>
-  <div>
-    Product Name
-    <input [(ngModel)]="product.productName" />
+  <div class="panel-footer">
+    <button class="btn btn-default" (click)="back()">back</button>
+    <button class="btn btn-primary" (click)='save()'>Save</button>
   </div>
-  <div>
-    Product Cost
-    <input [(ngModel)]="product.productCost" />
-  </div>
-  <button (click)="back()">back</button>
-  <button (click)='save()'>Save</button>
-
 </div>
