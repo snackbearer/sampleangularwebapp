@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using sampledata.Models;
@@ -10,10 +11,11 @@ namespace sampleangularwebapp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ProductController : ControllerBase
     {
         // GET: api/Product
-        
+        [Authorize(Policy = "CanAccessProducts")]
         [HttpGet]
         public IEnumerable<Product> Get()
         {

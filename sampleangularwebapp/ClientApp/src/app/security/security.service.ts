@@ -23,8 +23,8 @@ export class SecurityService {
   login(entity: AppUser): Observable<AppUserAuth> {
     // Initialize security object
     this.resetSecurityObject();
-
-    return this.http.post<AppUserAuth>(this.baseUrl + "/api/Security/login",
+    //this.http.post(this.BaseURL + 'api/Product', this.product).toPromise().then(this.navigateProductList).catch(this.errorOut);
+    return this.http.post<AppUserAuth>(this.baseUrl + "api/security/login",
       entity, httpOptions).pipe(
         tap(resp => {
           // Use object assign to update the current object

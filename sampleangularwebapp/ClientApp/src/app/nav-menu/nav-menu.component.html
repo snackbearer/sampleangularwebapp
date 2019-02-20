@@ -31,9 +31,9 @@
                 </a>
               </ng-container>
             </li>
-            <li *hasClaim="'canAccessProducts'" [routerLinkActive]='["link-active"]'>
+            <li [routerLinkActive]='["link-active"]'>
               <ng-container *ngIf="securityObject.isAuthenticated">
-                <a [routerLink]='["/productlist"]' (click)='collapse()'>
+                <a *hasClaim="'canAccessProducts'" [routerLink]='["/productlist"]' (click)='collapse()'>
                   <span class='glyphicon glyphicon-th-list'></span> ProductList
                 </a>
               </ng-container>

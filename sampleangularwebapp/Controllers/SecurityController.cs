@@ -10,6 +10,8 @@ using sampledata.Models;
 
 namespace sampleangularwebapp.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class SecurityController : Controller
     {
         private JwtSettings _settings;
@@ -18,6 +20,12 @@ namespace sampleangularwebapp.Controllers
             _settings = settings;
         }
 
+            
+        [HttpGet("test")]
+        public string test()
+        {
+            return "test";
+        }
         [HttpPost("login")]
         public IActionResult Login([FromBody]User user)
         {
