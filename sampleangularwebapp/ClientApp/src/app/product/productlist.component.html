@@ -1,12 +1,8 @@
 <h1>Product List</h1>
-
-<p>This component demonstrates fetching data from the server.</p>
-
 <p *ngIf="!filteredproductList"><em>Loading...</em></p>
-
-
-<p>filter2 <input [(ngModel)]="listfilter" /></p>
-<table class='table' *ngIf="filteredproductList">
+<p>filter by Product Name <input [(ngModel)]="listfilter" /></p>
+<button (click)="add()" >Add</button>
+<table class="table table-bordered table-striped table-condensed" *ngIf="filteredproductList">
   <thead>
     <tr>
       <th>ID</th>
@@ -17,15 +13,17 @@
   </thead>
   <tbody>
     <tr *ngFor="let productItem of filteredproductList">
-      <td> <a [routerLink]='["/product", productItem.productId]'>
+      <td>
+        <a [routerLink]='["/product", productItem.productId]'>
 
-  <!--  product/:id  [routerlink]='["/product", productItem.productId]' -->
-  {{ productItem.productId }}
-</a>
+          <!--  product/:id  [routerlink]='["/product", productItem.productId]' -->
+          {{ productItem.productId }}
+        </a>
       </td>
       <td>{{ productItem.productCode }}</td>
       <td>{{ productItem.productName }}</td>
       <td>{{ productItem.productCost }}</td>
+      <td><button (click)="deleteProduct(productItem.productId)" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button></td>
     </tr>
   </tbody>
 </table>

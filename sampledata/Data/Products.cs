@@ -19,7 +19,7 @@ namespace sampledata.Data
         {
             
             var products = context.Product.ToList();
-
+            
             return products;
 
         }
@@ -29,6 +29,17 @@ namespace sampledata.Data
             
             return context.Product.Where(p => p.ProductId == productID).FirstOrDefault();
             
+        }
+
+        public bool DeleteProduct(int productId)
+        {
+
+            var selectedProduct = context.Product.Where(p => p.ProductId == productId).First();
+            context.Product.Remove(selectedProduct);
+            context.SaveChanges();
+
+            return true;
+
         }
 
         public Product SetProduct(Product product)

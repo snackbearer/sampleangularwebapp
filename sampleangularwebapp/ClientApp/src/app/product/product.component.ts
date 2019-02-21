@@ -11,7 +11,7 @@ import { Location } from '@angular/common';
 export class productComponent {
   
   public product: Product;
-  public originalProduct: Product;
+  //public originalProduct: Product;
   public BaseURL: string;
   public productID: number;
 
@@ -21,12 +21,31 @@ export class productComponent {
   }
 
   ngOnInit() {
-    this.productService.getProduct(this.productID).subscribe(product => {
-      this.product = product;
-      this.originalProduct = Object.assign({}, this.product)
-    });
+    this.createOrLoadProduct(this.productID);
   }
 
+  private createOrLoadProduct(id: number) {
+    if (id == -1) {
+      // Create new product object
+      this.initProduct();
+    }
+    else {
+      // Get a product from product service
+      this.productService.getProduct(id)
+        .subscribe(product => {
+          this.product = product;
+          //this.originalProduct = Object.assign({}, this.product)
+        });
+    }
+  }
+
+  private initProduct(): void {
+    // Add a new product
+    this.product = new Product({
+      
+    });
+    //this.originalProduct = Object.assign({}, this.product);
+  }
   /*
   constructor(private router: Router, private route: ActivatedRoute, @Inject('BASE_URL') baseUrl: string,private http: HttpClient) {
     this.productID = this.route.snapshot.paramMap.get('id');

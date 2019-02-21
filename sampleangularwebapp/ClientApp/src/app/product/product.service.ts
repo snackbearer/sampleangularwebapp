@@ -34,7 +34,7 @@ export class ProductService {
     return this.http.put(this.apiURL, entity, httpOptions);
   }
 
-  deleteProduct(id: number): Observable<Product> {
-    return this.http.delete<Product>(this.apiURL + "/" + id.toString(), httpOptions);
+  deleteProduct(id: number): Observable<any> {
+    return this.http.delete(this.apiURL + "/" + id.toString(), httpOptions);
   }
 }

@@ -7,7 +7,7 @@
                 <span class='icon-bar'></span>
                 <span class='icon-bar'></span>
             </button>
-            <a class='navbar-brand' [routerLink]='["/"]'>sampleangularwebapp</a>
+            <a class='navbar-brand' [routerLink]='["/"]'>Kevs CMS</a>
         </div>
         <div class='clearfix'></div>
         <div class='navbar-collapse collapse' [ngClass]='{ "in": isExpanded }'>
@@ -26,15 +26,8 @@
             </li>
             <li [routerLinkActive]='["link-active"]'>
               <ng-container *ngIf="securityObject.isAuthenticated">
-                <a [routerLink]='["/fetch-data"]' (click)='collapse()'>
-                  <span class='glyphicon glyphicon-th-list'></span> Fetch data
-                </a>
-              </ng-container>
-            </li>
-            <li [routerLinkActive]='["link-active"]'>
-              <ng-container *ngIf="securityObject.isAuthenticated">
                 <a *hasClaim="'canAccessProducts'" [routerLink]='["/productlist"]' (click)='collapse()'>
-                  <span class='glyphicon glyphicon-th-list'></span> ProductList
+                  <span class='glyphicon glyphicon-th-list'></span> Products
                 </a>
               </ng-container>
             </li>

@@ -68,6 +68,9 @@ namespace sampleangularwebapp.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var data = new sampledata.Data.Products();
+
+            data.DeleteProduct(id);
         }
     }
 }

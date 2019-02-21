@@ -1,6 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, Router } from '@angular/router';
+import { ProductService } from './product.service';
+import { Product } from './product';
 
 @Component({
   selector: 'productlist-data',
@@ -8,8 +10,30 @@ import { RouterModule, Routes } from '@angular/router';
 })
 export class productlistComponent {
    _filter: string;
-  public productList: ProductItem[];
-  public filteredproductList: ProductItem[];
+  public productList: Product[];
+  public filteredproductList: Product[];
+
+  constructor(private router: Router, private productservice : ProductService) {
+    
+  }
+
+  ngOnInit() {
+
+    this.reloadProducts();
+    
+  }
+
+  reloadProducts(): void {
+
+    this._filter = "";
+
+    this.productservice.getProducts().subscribe(product => {
+      this.productList = product;
+      this.filteredproductList = product;
+    });
+
+  }
+
 
   get listfilter(): string {
     return this._filter;
@@ -20,11 +44,23 @@ export class productlistComponent {
 
   }
 
-  performFilter(filtertext: string): ProductItem[] {
-    return this.productList.filter((product: ProductItem) => product.productName.indexOf(filtertext) != -1);
+  performFilter(filtertext: string): Product[] {
+    return this.productList.filter((product: Product) => product.productName.indexOf(filtertext) != -1);
   }
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+  add(): void {
+    this.router.navigate(["/product", "-1"]); 
+  }
+
+  deleteProduct(productID: number): void {
+    this.productservice.deleteProduct(productID).subscribe(
+      () => null,
+      () => null,
+      () => this.reloadProducts());
+  }
+
+  /*
+  constructor(private router: Router, http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     http.get<ProductItem[]>(baseUrl + 'api/Product').subscribe(result => {
       this.productList = result;
       this.filteredproductList = this.productList;
@@ -32,4 +68,5 @@ export class productlistComponent {
     }, error => console.error(error));
     
   }
+  */
 }
