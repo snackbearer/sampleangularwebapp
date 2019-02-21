@@ -32,8 +32,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="ClientApp\src\app\productlist\productlist.component.ts" />
     <None Remove="ClientApp\src\app\product\product.component.ts" />
+    <None Remove="ClientApp\src\app\product\product.service.ts" />
+    <None Remove="ClientApp\src\app\product\product.ts" />
     <None Remove="ClientApp\src\app\security\app-user-auth.ts" />
     <None Remove="ClientApp\src\app\security\app-user-claim.ts" />
     <None Remove="ClientApp\src\app\security\app-user.ts" />
@@ -49,7 +50,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\src\app\productlist\productlist.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\product\product.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\product\product.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\product\productlist.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\product\product.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\security\app-user-auth.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\security\app-user-claim.ts" />

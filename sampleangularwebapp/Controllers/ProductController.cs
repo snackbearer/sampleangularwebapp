@@ -55,9 +55,13 @@ namespace sampleangularwebapp.Controllers
         }
 
         // PUT: api/Product/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public void Put([FromBody] Product value)
         {
+            var data = new sampledata.Data.Products();
+
+            data.SetProduct(new sampledata.Models.Product { ProductId = value.ProductId, ProductCode = value.ProductCode, ProductName = value.ProductName, ProductCost = value.ProductCost });
+
         }
 
         // DELETE: api/ApiWithActions/5

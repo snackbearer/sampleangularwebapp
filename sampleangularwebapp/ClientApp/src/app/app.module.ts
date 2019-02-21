@@ -9,9 +9,10 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
-import { productlistComponent } from './productlist/productlist.component';
+import { productlistComponent } from './product/productlist.component';
 import { productComponent } from './product/product.component';
 import { SecurityService } from './security/security.service';
+import { ProductService } from './product/product.service';
 import { loginComponent } from './security/login.component';
 import { AuthGuard } from './security/auth.guard';
 import { HttpInterceptorModule } from './security/http-interceptor.module';
@@ -45,7 +46,7 @@ import { HasClaimDirective } from './security/has-claim.directive';
     ]),
     HttpInterceptorModule
   ],
-  providers: [SecurityService, AuthGuard],
+  providers: [ProductService, SecurityService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
