@@ -8,6 +8,7 @@
 *.user
 *.userosscache
 *.sln.docstates
+appsettings.json
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -231,4 +232,3 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
-appsettings.json
