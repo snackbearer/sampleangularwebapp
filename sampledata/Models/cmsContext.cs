@@ -6,8 +6,11 @@ namespace sampledata.Models
 {
     public partial class cmsContext : DbContext
     {
-        public cmsContext()
+        string connectionString;
+
+        public cmsContext(string ConnectionString)
         {
+            connectionString = ConnectionString;
         }
 
         public cmsContext(DbContextOptions<cmsContext> options)
@@ -23,9 +26,8 @@ namespace sampledata.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                var connstring = "";
-                optionsBuilder.UseSqlServer(connstring);
+                
+                optionsBuilder.UseSqlServer(connectionString);
             }
         }
 

@@ -4,15 +4,17 @@
          *ngIf="securityObject &&
            !securityObject.isAuthenticated">
       <p>Invalid User Name/Password.</p>
+      <p>
+        {{ securityObject | json }} </p>
     </div>
   </div>
 </div>
-
 <!-- TEMPORARY CODE TO VIEW SECURITY OBJECT -->
 <div class="row">
   <div class="col-xs-12">
-    <label>{{securityObject | json}}</label>
-  </div>
+    <label>{{securityObject | json
+        }}</label>
+</div>
 </div>
 <form>
   <div class="row">

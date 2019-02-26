@@ -12,9 +12,11 @@ namespace sampleangularwebapp.Security
     public class SecurityManager
     {
         private JwtSettings _settings = null;
-        public SecurityManager(JwtSettings settings)
+        private string connectionString;
+        public SecurityManager(string ConnectionString, JwtSettings settings)
         {
             _settings = settings;
+            connectionString = ConnectionString;
         }
 
         public AppUserAuth ValidateUser(User user)
@@ -22,7 +24,7 @@ namespace sampleangularwebapp.Security
             AppUserAuth ret = new AppUserAuth();
             User authUser = null;
 
-            using (var db = new cmsContext())
+            using (var db = new cmsContext(this.connectionString))
             {
                 // Attempt to validate user
                 authUser = db.User.Where(
@@ -45,7 +47,7 @@ namespace sampleangularwebapp.Security
 
             try
             {
-                using (var db = new cmsContext())
+                using (var db = new cmsContext(this.connectionString))
                 {
                     list = db.UserClaim.Where(
                              u => u.UserId == authUser.UserId).ToList();

@@ -10,9 +10,9 @@ namespace sampledata.Data
     {
         cmsContext context;
 
-        public Products()
+        public Products(string ConnectionString)
         {
-            context = new cmsContext();
+            context = new cmsContext(ConnectionString);
         }
 
         public IEnumerable<Product> GetProducts()

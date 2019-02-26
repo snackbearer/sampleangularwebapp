@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using sampledata.Models;
 
 namespace sampleangularwebapp.Controllers
@@ -14,13 +15,22 @@ namespace sampleangularwebapp.Controllers
     [Authorize]
     public class ProductController : ControllerBase
     {
+        private readonly IConfiguration configuration;
+        private string connectionString;
+
+        public ProductController(IConfiguration Configuration)
+        {
+            this.configuration = Configuration;
+            this.connectionString = this.configuration.GetConnectionString("kevinangularcms");
+        }
+
         // GET: api/Product
         [Authorize(Policy = "CanAccessProducts")]
         [HttpGet]
         public IEnumerable<Product> Get()
         {
             
-            var data = new sampledata.Data.Products();
+            var data = new sampledata.Data.Products(this.connectionString);
 
             return data.GetProducts();
             
@@ -31,7 +41,7 @@ namespace sampleangularwebapp.Controllers
         public Product Get(int id)
         {
             
-            var data = new sampledata.Data.Products();
+            var data = new sampledata.Data.Products(this.connectionString);
 
             var p = data.GetProduct(id);
             //var lst = new List<Product>();
@@ -48,7 +58,7 @@ namespace sampleangularwebapp.Controllers
         public void Post([FromBody] Product value)
         {
             
-            var data = new sampledata.Data.Products();
+            var data = new sampledata.Data.Products(this.connectionString);
 
             data.SetProduct(new sampledata.Models.Product { ProductId = value.ProductId, ProductCode = value.ProductCode, ProductName = value.ProductName, ProductCost = value.ProductCost });
             
@@ -58,7 +68,7 @@ namespace sampleangularwebapp.Controllers
         [HttpPut]
         public void Put([FromBody] Product value)
         {
-            var data = new sampledata.Data.Products();
+            var data = new sampledata.Data.Products(this.connectionString);
 
             data.SetProduct(new sampledata.Models.Product { ProductId = value.ProductId, ProductCode = value.ProductCode, ProductName = value.ProductName, ProductCost = value.ProductCost });
 
@@ -68,7 +78,7 @@ namespace sampleangularwebapp.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            var data = new sampledata.Data.Products();
+            var data = new sampledata.Data.Products(this.connectionString);
 
             data.DeleteProduct(id);
         }
