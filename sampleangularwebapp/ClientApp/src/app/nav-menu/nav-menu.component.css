@@ -49,6 +49,7 @@ li.link-active a:focus {
         padding: 10px 16px;
         border-radius: 4px;
     }
+    
     .navbar a {
         /* If a menu item's text is too long, truncate it */
         width: 100%;

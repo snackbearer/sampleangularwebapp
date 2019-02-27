@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -23,8 +24,12 @@ namespace sampledata.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
+                 
+
+                //var configString = Configuration("kevinangularcms");
+
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Data Source=sampledbserver.database.windows.net;Initial Catalog=cmssample;User ID=kevinwolrath;Password=Mulderdog32!;Connect Timeout=60;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                optionsBuilder.UseSqlServer("Data Source=sampledbserver.database.windows.net;Initial Catalog=cmssample;User ID=sampleangularuserdb;Password=notalongpassword32!;Connect Timeout=60;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             }
         }
 
