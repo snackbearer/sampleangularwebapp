@@ -30,9 +30,12 @@ export class loginComponent {
           this.router.navigateByUrl(this.returnUrl);
         }
       },
-        () => {
+        (error =>{
           // Initialize security object to display error message
           this.securityObject = new AppUserAuth();
-        });
+          this.securityObject.errorMessage = error;
+      })
+        
+    );
   }
 }

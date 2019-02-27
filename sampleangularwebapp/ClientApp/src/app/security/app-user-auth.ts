@@ -5,4 +5,5 @@ export class AppUserAuth {
   bearerToken: string = "";
   isAuthenticated: boolean = false;
   claims: AppUserClaim[] = [];
+  errorMessage: string;
 }
