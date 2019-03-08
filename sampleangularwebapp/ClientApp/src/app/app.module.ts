@@ -35,8 +35,8 @@ import { HasClaimDirective } from './security/has-claim.directive';
     FormsModule,
     NgbModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
+      { path: '', canActivate: [AuthGuard], component: HomeComponent, pathMatch: 'full', data: { claimType: 'canAccessProducts' }  },
+      { path: 'counter', canActivate: [AuthGuard], component: CounterComponent },
       { path: 'productlist', canActivate: [AuthGuard], component: productlistComponent, data: { claimType: 'canAccessProducts' } },
       { path: 'product/:id', canActivate: [AuthGuard], component: productComponent, data: { claimType: 'canAccessProducts' } },
       { path: 'login', component: loginComponent },

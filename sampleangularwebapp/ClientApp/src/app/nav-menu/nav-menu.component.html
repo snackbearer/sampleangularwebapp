@@ -13,9 +13,11 @@
 
         <ul class='nav navbar-nav'>
           <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
-            <a [routerLink]='["/"]' (click)='collapse()'>
-              <span class='glyphicon glyphicon-home'></span> Home
-            </a>
+            <ng-container *ngIf="securityObject.isAuthenticated">
+              <a [routerLink]='["/"]' (click)='collapse()'>
+                <span class='glyphicon glyphicon-home'></span> Home
+              </a>
+            </ng-container>
           </li>
           <li [routerLinkActive]='["link-active"]'>
             <ng-container *ngIf="securityObject.isAuthenticated">

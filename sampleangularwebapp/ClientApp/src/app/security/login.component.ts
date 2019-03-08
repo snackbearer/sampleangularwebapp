@@ -12,7 +12,7 @@ export class loginComponent {
 
   user: AppUser = new AppUser();
   securityObject: AppUserAuth = null;
-  returnUrl: string;
+  returnUrl: string = "";
 
   constructor(private securityService: SecurityService,
     private route: ActivatedRoute,
@@ -26,8 +26,13 @@ export class loginComponent {
     this.securityService.login(this.user)
       .subscribe(resp => {
         this.securityObject = resp;
+        
         if (this.returnUrl) {
           this.router.navigateByUrl(this.returnUrl);
+ 
+        } else {
+          this.router.navigateByUrl('');
+          
         }
       },
         (error =>{
