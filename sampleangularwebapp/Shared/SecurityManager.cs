@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
+using sampledata.Data;
 using sampledata.Models;
 
 namespace sampleangularwebapp.Security
@@ -12,11 +13,11 @@ namespace sampleangularwebapp.Security
     public class SecurityManager
     {
         private JwtSettings _settings = null;
-        private string connectionString;
-        public SecurityManager(string ConnectionString, JwtSettings settings)
+        private cmsContext _context;
+        public SecurityManager(cmsContext context, JwtSettings settings)
         {
             _settings = settings;
-            connectionString = ConnectionString;
+            _context = context;
         }
 
         public AppUserAuth ValidateUser(User user)
@@ -24,14 +25,10 @@ namespace sampleangularwebapp.Security
             AppUserAuth ret = new AppUserAuth();
             User authUser = null;
 
-            using (var db = new cmsContext(this.connectionString))
-            {
-                // Attempt to validate user
-                authUser = db.User.Where(
-                  u => u.UserName.ToLower() == user.UserName.ToLower()
-                  && u.Password == user.Password).FirstOrDefault();
-            }
+            var sec = new SecurityService(_context);
 
+            authUser = sec.GetUser(user);
+            
             if (authUser != null)
             {
                 // Build User Security Object
@@ -43,23 +40,10 @@ namespace sampleangularwebapp.Security
 
         protected List<UserClaim> GetUserClaims(User authUser)
         {
-            List<UserClaim> list = new List<UserClaim>();
 
-            try
-            {
-                using (var db = new cmsContext(this.connectionString))
-                {
-                    list = db.UserClaim.Where(
-                             u => u.UserId == authUser.UserId).ToList();
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(
-                    "Exception trying to retrieve user claims.", ex);
-            }
-
-            return list;
+            var sec = new SecurityService(_context);
+            
+            return sec.GetUserClaims(authUser);
         }
 
         protected AppUserAuth BuildUserAuthObject(User authUser)

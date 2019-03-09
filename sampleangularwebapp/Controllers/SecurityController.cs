@@ -15,24 +15,18 @@ namespace sampleangularwebapp.Controllers
     [ApiController]
     public class SecurityController : Controller
     {
-        private readonly IConfiguration configuration;
-        private string connectionString;
+        private readonly cmsContext _context;
+        
 
         private JwtSettings _settings;
-        public SecurityController(IConfiguration Configuration, JwtSettings settings)
+        public SecurityController(cmsContext context, JwtSettings settings)
         {
-            this.configuration = Configuration;
-            this.connectionString = this.configuration.GetConnectionString("kevinangularcms");
+
+            _context = context;
 
             _settings = settings;
         }
-
-            
-        [HttpGet("test")]
-        public string test()
-        {
-            return "test";
-        }
+        
         [HttpPost("login")]
         public IActionResult Login([FromBody]User user)
         {
@@ -40,7 +34,7 @@ namespace sampleangularwebapp.Controllers
             try
             {
                 AppUserAuth auth = new AppUserAuth();
-                SecurityManager mgr = new SecurityManager(this.connectionString, _settings);
+                SecurityManager mgr = new SecurityManager(_context, _settings);
             
                 auth = mgr.ValidateUser(user);
                 if (auth.IsAuthenticated)
@@ -50,7 +44,7 @@ namespace sampleangularwebapp.Controllers
                 else
                 {
                     ret = StatusCode(StatusCodes.Status404NotFound,
-                                     "Invalid User Name/Password. dsd " + this.connectionString);
+                                     "Invalid User Name/Password.");
                 }
                 } catch(Exception ex)
                 {

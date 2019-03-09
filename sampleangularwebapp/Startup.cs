@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
@@ -32,6 +33,9 @@ namespace sampleangularwebapp
                 configuration.RootPath = "ClientApp/dist";
             });
 
+            // NOTE: Not a proper implementation should build a proper dependancy injection factory
+            services.AddDbContext<cmsContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:kevinangularcms"]));
+            
             // Get JWT Token Settings from JwtSettings.json file
             JwtSettings settings;
             settings = GetJwtSettings();
@@ -68,6 +72,7 @@ namespace sampleangularwebapp
             {
                 // NOTE: The claim type and value are case-sensitive
                 cfg.AddPolicy("CanAccessProducts", p => p.RequireClaim("CanAccessProducts", "true"));
+                cfg.AddPolicy("CanAccessGeneral", p => p.RequireClaim("CanAccessGeneral", "true"));
             });
 
             services.AddCors();

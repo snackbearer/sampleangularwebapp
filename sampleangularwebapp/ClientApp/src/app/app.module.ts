@@ -8,7 +8,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
 import { productlistComponent } from './product/productlist.component';
 import { productComponent } from './product/product.component';
 import { SecurityService } from './security/security.service';
@@ -23,7 +22,6 @@ import { HasClaimDirective } from './security/has-claim.directive';
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    CounterComponent,
     productlistComponent,
     productComponent,
     loginComponent,
@@ -35,8 +33,7 @@ import { HasClaimDirective } from './security/has-claim.directive';
     FormsModule,
     NgbModule,
     RouterModule.forRoot([
-      { path: '', canActivate: [AuthGuard], component: HomeComponent, pathMatch: 'full', data: { claimType: 'canAccessProducts' }  },
-      { path: 'counter', canActivate: [AuthGuard], component: CounterComponent },
+      { path: '', canActivate: [AuthGuard], component: HomeComponent, pathMatch: 'full', data: { claimType: 'canAccessGeneral' }  },
       { path: 'productlist', canActivate: [AuthGuard], component: productlistComponent, data: { claimType: 'canAccessProducts' } },
       { path: 'product/:id', canActivate: [AuthGuard], component: productComponent, data: { claimType: 'canAccessProducts' } },
       { path: 'login', component: loginComponent },

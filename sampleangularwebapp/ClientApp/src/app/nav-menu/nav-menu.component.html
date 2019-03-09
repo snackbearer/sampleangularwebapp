@@ -7,46 +7,38 @@
         <span class='icon-bar'></span>
         <span class='icon-bar'></span>
       </button>
-
-      <a class='navbar-brand' [routerLink]='["/"]'>Kevs CMS2</a>
-      <div class='navbar-collapse collapse' [ngClass]='{ "in": isExpanded }'>
-
-        <ul class='nav navbar-nav'>
-          <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
-            <ng-container *ngIf="securityObject.isAuthenticated">
-              <a [routerLink]='["/"]' (click)='collapse()'>
-                <span class='glyphicon glyphicon-home'></span> Home
-              </a>
-            </ng-container>
-          </li>
-          <li [routerLinkActive]='["link-active"]'>
-            <ng-container *ngIf="securityObject.isAuthenticated">
-              <a [routerLink]='["/counter"]' (click)='collapse()'>
-                <span class='glyphicon glyphicon-education'></span> Counter
-              </a>
-            </ng-container>
-          </li>
-          <li [routerLinkActive]='["link-active"]'>
-            <ng-container *ngIf="securityObject.isAuthenticated">
-              <a *hasClaim="'canAccessProducts'" [routerLink]='["/productlist"]' (click)='collapse()'>
-                <span class='glyphicon glyphicon-th-list'></span> Products
-              </a>
-            </ng-container>
-          </li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li>
-            <a routerLink="login" *ngIf="!securityObject.isAuthenticated">
-              Login
-            </a>
-            <a href="#" (onclick)="logout()" *ngIf="securityObject.isAuthenticated">
-              Logout {{securityObject.userName}}
-            </a>
-          </li>
-        </ul>
-
-      </div>
+      <a class='navbar-brand' [routerLink]='["/"]'>Sample CMS</a>
     </div>
-    
+    <div class='clearfix'></div>
+    <div class='navbar-collapse collapse' [ngClass]='{ "in": isExpanded }'>
+      <ul class='nav navbar-nav'>
+        <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
+          <ng-container *ngIf="securityObject.isAuthenticated">
+            <a [routerLink]='["/"]' (click)='collapse()'>
+              <span class='glyphicon glyphicon-home'></span> Home
+            </a>
+          </ng-container>
+        </li>
+        <li [routerLinkActive]='["link-active"]'>
+          <ng-container *ngIf="securityObject.isAuthenticated">
+            <a *hasClaim="'canAccessProducts'" [routerLink]='["/productlist"]' (click)='collapse()'>
+              <span class='glyphicon glyphicon-th-list'></span> Products
+            </a>
+          </ng-container>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <!--
+  <a routerLink="login" *ngIf="!securityObject.isAuthenticated">
+    Login
+  </a>
+      -->
+          <a href="#" (onclick)="logout()" *ngIf="securityObject.isAuthenticated">
+            Logout {{securityObject.userName}}
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>

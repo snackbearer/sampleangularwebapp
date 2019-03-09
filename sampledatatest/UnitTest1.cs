@@ -8,7 +8,7 @@ namespace sampledatatest
         [Fact]
         public void Test1()
         {
-            var data = new sampledata.Data.Products("");
+            var data = new sampledata.Data.ProductsService("");
 
             var products = data.GetProducts();
 
