@@ -1,29 +1,42 @@
-<h1>Product List</h1>
-<p *ngIf="!filteredproductList"><em>Loading...</em></p>
-<p>filter by Product Name <input [(ngModel)]="listfilter" /></p>
-<button (click)="add()" >Add</button>
-<table class="table table-bordered table-striped table-condensed" *ngIf="filteredproductList">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Code</th>
-      <th>Name</th>
-      <th>Cost</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let productItem of filteredproductList">
-      <td>
-        <a [routerLink]='["/product", productItem.productId]'>
 
-          <!--  product/:id  [routerlink]='["/product", productItem.productId]' -->
-          {{ productItem.productId }}
-        </a>
-      </td>
-      <td>{{ productItem.productCode }}</td>
-      <td>{{ productItem.productName }}</td>
-      <td>{{ productItem.productCost }}</td>
-      <td><button (click)="deleteProduct(productItem.productId)" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button></td>
-    </tr>
-  </tbody>
-</table>
+<div style="margin-top:0.5em;" class="panel panel-primary">
+  <p *ngIf="!filteredproductList"><em>Loading...</em></p>
+  <div class="panel-heading">
+    <h3 class="panel-title">Product List</h3>
+  </div>
+  <div class="panel-body">
+    <div>
+      <p>filter by Product Name <input [(ngModel)]="listfilter" /></p>
+    </div>
+    <div style="margin:0.5em;">
+      <button (click)="add()">Add</button>
+    </div>
+    <div>
+      <table class="table table-bordered table-striped table-condensed" *ngIf="filteredproductList">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let productItem of filteredproductList">
+            <td>
+              <a [routerLink]='["/product", productItem.productId]'>
+
+                <!--  product/:id  [routerlink]='["/product", productItem.productId]' -->
+                {{ productItem.productId }}
+              </a>
+            </td>
+            <td>{{ productItem.productCode }}</td>
+            <td>{{ productItem.productName }}</td>
+            <td>{{ productItem.productCost }}</td>
+            <td><button (click)="deleteProduct(productItem.productId)" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

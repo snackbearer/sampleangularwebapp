@@ -6,7 +6,8 @@ import { Location } from '@angular/common';
 
 @Component({
   selector: 'product-data',
-  templateUrl: './product.component.html'
+  templateUrl: './product.component.html',
+  styleUrls: ['./product.component.css']
 })
 export class productComponent {
   

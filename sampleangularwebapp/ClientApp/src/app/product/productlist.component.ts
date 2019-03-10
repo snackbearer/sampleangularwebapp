@@ -6,7 +6,8 @@ import { Product } from './product';
 
 @Component({
   selector: 'productlist-data',
-  templateUrl: './productlist.component.html'
+  templateUrl: './productlist.component.html',
+  styleUrls: ['./productlist.component.css']
 })
 export class productlistComponent {
    _filter: string;
