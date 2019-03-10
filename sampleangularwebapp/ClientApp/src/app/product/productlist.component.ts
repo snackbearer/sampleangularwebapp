@@ -46,7 +46,7 @@ export class productlistComponent {
   }
 
   performFilter(filtertext: string): Product[] {
-    return this.productList.filter((product: Product) => product.productName.indexOf(filtertext) != -1);
+    return this.productList.filter((product: Product) => product.productName.toUpperCase().indexOf(filtertext.toUpperCase()) != -1);
   }
 
   add(): void {

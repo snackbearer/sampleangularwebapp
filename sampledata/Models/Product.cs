@@ -9,5 +9,6 @@ namespace sampledata.Models
         public string ProductCode { get; set; }
         public string ProductName { get; set; }
         public decimal? ProductCost { get; set; }
+        public DateTime? ProductExpiryDate { get; set; }
     }
 }

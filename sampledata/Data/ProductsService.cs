@@ -11,12 +11,7 @@ namespace sampledata.Data
     public class ProductsService : IProductService
     {
         cmsContext _context;
-
-        public ProductsService(string ConnectionString)
-        {
-            _context = new cmsContext(ConnectionString);
-        }
-
+        
         public ProductsService(cmsContext context)
         {
             _context = context;
@@ -30,7 +25,8 @@ namespace sampledata.Data
                 ProductId = p.ProductId,
                 ProductCode = p.ProductCode,
                 ProductName = p.ProductName,
-                ProductCost = p.ProductCost
+                ProductCost = p.ProductCost,
+                ProductExpiryDate = p.ProductExpiryDate
             }).ToList();
             
             return products;
@@ -47,8 +43,9 @@ namespace sampledata.Data
                     ProductId = p.ProductId,
                     ProductCode = p.ProductCode,
                     ProductName = p.ProductName,
-                    ProductCost = p.ProductCost
-                }).FirstOrDefault();
+                    ProductCost = p.ProductCost,
+                    ProductExpiryDate = p.ProductExpiryDate
+                 }).FirstOrDefault();
             
         }
 
@@ -69,7 +66,7 @@ namespace sampledata.Data
         {
             Product setproduct;
             
-            setproduct = new Product { ProductCode = product.ProductCode, ProductName = product.ProductName, ProductCost = product.ProductCost };
+            setproduct = new Product { ProductCode = product.ProductCode, ProductName = product.ProductName, ProductCost = product.ProductCost, ProductExpiryDate = product.ProductExpiryDate };
 
             _context.Product.Add(setproduct);
 
@@ -80,7 +77,8 @@ namespace sampledata.Data
                 ProductId = setproduct.ProductId,
                 ProductCode = setproduct.ProductCode,
                 ProductName = setproduct.ProductName,
-                ProductCost = setproduct.ProductCost
+                ProductCost = setproduct.ProductCost,
+                ProductExpiryDate = setproduct.ProductExpiryDate
             };
 
         }
@@ -94,14 +92,16 @@ namespace sampledata.Data
             setproduct.ProductCode = product.ProductCode;
             setproduct.ProductName = product.ProductName;
             setproduct.ProductCost = product.ProductCost;
+            setproduct.ProductExpiryDate = product.ProductExpiryDate;
 
             _context.SaveChanges();
 
             return new iProduct { ProductId = setproduct.ProductId,
                 ProductCode = setproduct.ProductCode,
                 ProductName = setproduct.ProductName,
-                ProductCost = setproduct.ProductCost
-            };
+                ProductCost = setproduct.ProductCost,
+                ProductExpiryDate = setproduct.ProductExpiryDate
+        };
 
         }
 

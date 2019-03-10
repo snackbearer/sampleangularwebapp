@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -7,11 +6,8 @@ namespace sampledata.Models
 {
     public partial class cmsContext : DbContext
     {
-        string connectionString;
-
-        public cmsContext(string ConnectionString)
+        public cmsContext()
         {
-            connectionString = ConnectionString;
         }
 
         public cmsContext(DbContextOptions<cmsContext> options)
@@ -25,11 +21,7 @@ namespace sampledata.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-                
-                optionsBuilder.UseSqlServer(connectionString);
-            }
+        
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -43,6 +35,8 @@ namespace sampledata.Models
                 entity.Property(e => e.ProductCode).HasMaxLength(50);
 
                 entity.Property(e => e.ProductCost).HasColumnType("money");
+
+                entity.Property(e => e.ProductExpiryDate).HasColumnType("datetime");
 
                 entity.Property(e => e.ProductName).HasMaxLength(50);
             });
@@ -61,9 +55,7 @@ namespace sampledata.Models
             modelBuilder.Entity<UserClaim>(entity =>
             {
                 entity.HasKey(e => e.ClaimId)
-                    .HasName("PK__UserClai__EF2E139BAA46A466");
-
-                entity.Property(e => e.ClaimId).ValueGeneratedNever();
+                    .HasName("PK__tmp_ms_x__EF2E139B9F5978F9");
 
                 entity.Property(e => e.ClaimType)
                     .HasMaxLength(50)

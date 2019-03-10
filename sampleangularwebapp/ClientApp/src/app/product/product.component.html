@@ -3,22 +3,39 @@
   <div class="panel-heading">
     <h3 class="panel-title">Product Information</h3>
   </div>
-  <div class="panel-body">
-    <div class="form-group">
-      <label for="productCode">Product Code</label>
-      <input class="form-control" [(ngModel)]="product.productCode" />
+  <form (ngSubmit)="onSubmit()" #productForm="ngForm" >
+    <div class="panel-body">
+      <div class="form-group">
+        <label for="productCode">Product Code</label>
+        <input id="productCode" name="productCode" class="form-control" [(ngModel)]="product.productCode" required #productCode="ngModel" />
+        <div [hidden]="productCode.valid || productCode.pristine"
+             class="alert alert-danger">
+          Product code is required
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="productName">Product Name</label>
+        <input id="productName" name="productName" class="form-control" required [(ngModel)]="product.productName" #productName="ngModel" />
+        <div [hidden]="productName.valid || productName.pristine"
+             class="alert alert-danger">
+          Product name is required
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="productCost">Product Cost</label>
+        <input id="productCost" type="number" name="productCost" class="form-control" [(ngModel)]="product.productCost" />
+      </div>
+      <div class="form-group">
+        <label for="productExpiryDate">Expires on</label>
+        <input id="productExpiryDate" type="datetime-local"
+               
+               name="productExpiryDate" class="form-control" [(ngModel)]="product.productExpiryDate" />
+          
+      </div>
     </div>
-    <div class="form-group">
-      <label for="productName">Product Name</label>
-      <input class="form-control" [(ngModel)]="product.productName" />
+    <div class="panel-footer">
+      <button  class="btn btn-default" (click)="goBack()">back</button>
+      <button type="submit" class="btn btn-primary" [disabled]="!productForm.form.valid" >Save</button>
     </div>
-    <div class="form-group">
-      <label for="productCose">Product Cost</label>
-      <input class="form-control" [(ngModel)]="product.productCost" />
-    </div>
-  </div>
-  <div class="panel-footer">
-    <button class="btn btn-default" (click)="cancel()">back</button>
-    <button class="btn btn-primary" (click)='save()'>Save</button>
-  </div>
+  </form>
 </div>

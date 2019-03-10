@@ -7,4 +7,5 @@ export class Product {
   productCode: string;
   productName: string;
   productCost: number;
+  productExpiryDate: Date;
 }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from './product.service';
 import { Product } from './product';
-import { Location } from '@angular/common';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'product-data',
@@ -15,14 +15,16 @@ export class productComponent {
   //public originalProduct: Product;
   public BaseURL: string;
   public productID: number;
+  public productForm: FormGroup;
+  
 
-
-  constructor(private productService: ProductService, private route: ActivatedRoute, private location: Location) {
+  constructor(private productService: ProductService, private route: ActivatedRoute, private router: Router) {
     this.productID = +this.route.snapshot.paramMap.get('id');
   }
 
   ngOnInit() {
     this.createOrLoadProduct(this.productID);
+    
   }
 
   private createOrLoadProduct(id: number) {
@@ -35,7 +37,7 @@ export class productComponent {
       this.productService.getProduct(id)
         .subscribe(product => {
           this.product = product;
-          //this.originalProduct = Object.assign({}, this.product)
+          
         });
     }
   }
@@ -45,27 +47,19 @@ export class productComponent {
     this.product = new Product({
       
     });
-    //this.originalProduct = Object.assign({}, this.product);
+    
   }
-  /*
-  constructor(private router: Router, private route: ActivatedRoute, @Inject('BASE_URL') baseUrl: string,private http: HttpClient) {
-    this.productID = this.route.snapshot.paramMap.get('id');
-    this.BaseURL = baseUrl;
-
-    http.get<ProductItem>(this.BaseURL + 'api/Product/' + this.productID).subscribe(result => {
-      this.product = result;
-    }, error => console.error(error));
-    //this.product = { productId : 1, productCode : "tet", productName : "west" , productCost : 0};
-    //this.product.productName = id;
-
-  }
-  */
   
+
+  onSubmit() {
+    this.save();
+  }
+
   save(): void {
 
     if (this.product.productId) {
       // Update product
-      this.productService.updateProduct(this.product)
+      this.productService.updateProduct(this.productID, this.product)
         .subscribe(product => { this.product = product },
           () => null,
           () => this.dataSaved());
@@ -77,11 +71,7 @@ export class productComponent {
           () => null,
           () => this.dataSaved());
     }
-
-    //http: HttpClient;
-    //this.http.post(this.BaseURL + 'api/Product', this.product).toPromise().then(this.navigateProductList).catch(this.errorOut);
     
-    //this.router.navigate(['/productlist']); 
   }
   private dataSaved(): void {
     // Redirect back to list
@@ -89,7 +79,8 @@ export class productComponent {
   }
 
   goBack(): void {
-    this.location.back();
+
+    this.router.navigate(["/productlist"]);
   }
 
   cancel(): void {

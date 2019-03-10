@@ -62,7 +62,7 @@ namespace sampleangularwebapp.Controllers
             
             var data = new sampledata.Data.ProductsService(_context);
 
-            data.CreateProduct(new iProduct { ProductId = value.ProductId, ProductCode = value.ProductCode, ProductName = value.ProductName, ProductCost = value.ProductCost });
+            data.CreateProduct(new iProduct { ProductId = value.ProductId, ProductCode = value.ProductCode, ProductName = value.ProductName, ProductCost = value.ProductCost, ProductExpiryDate = value.ProductExpiryDate });
             
         }
 
@@ -72,7 +72,7 @@ namespace sampleangularwebapp.Controllers
         {
             var data = new sampledata.Data.ProductsService(_context);
 
-            data.SetProduct(id, new iProduct { ProductId = value.ProductId, ProductCode = value.ProductCode, ProductName = value.ProductName, ProductCost = value.ProductCost });
+            data.SetProduct(id, new iProduct { ProductId = value.ProductId, ProductCode = value.ProductCode, ProductName = value.ProductName, ProductCost = value.ProductCost, ProductExpiryDate = value.ProductExpiryDate });
 
         }
 
