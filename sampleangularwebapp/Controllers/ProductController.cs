@@ -36,9 +36,12 @@ namespace sampleangularwebapp.Controllers
 
             return data.GetProducts();
             
+            
+
         }
 
         // GET: api/Product/5
+        [Authorize(Policy = "CanAccessProducts")]
         [HttpGet("{id}", Name = "Get")]
         public iProduct Get(int id)
         {
@@ -53,9 +56,10 @@ namespace sampleangularwebapp.Controllers
             
         }
 
-        
+
 
         // POST: api/Product
+        [Authorize(Policy = "CanAccessProducts")]
         [HttpPost]
         public void Post([FromBody] iProduct value)
         {
@@ -67,6 +71,7 @@ namespace sampleangularwebapp.Controllers
         }
 
         // PUT: api/Product/5
+        [Authorize(Policy = "CanAccessProducts")]
         [HttpPut("{id}")]
         public void Put([FromBody] Product value, int id)
         {
@@ -78,6 +83,7 @@ namespace sampleangularwebapp.Controllers
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
+        [Authorize(Policy = "CanAccessProducts")]
         public void Delete(int id)
         {
             var data = new sampledata.Data.ProductsService(_context);
