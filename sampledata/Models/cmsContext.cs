@@ -19,6 +19,7 @@ namespace sampledata.Models
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<UserClaim> UserClaim { get; set; }
 
+        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
         

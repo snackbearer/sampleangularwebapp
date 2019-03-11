@@ -8,7 +8,7 @@ using sampledatamodel.Models;
 
 namespace sampledata.Data
 {
-    public class ProductsService : IProductService
+    public class ProductsService : IProductService, IDisposable
     {
         cmsContext _context;
         

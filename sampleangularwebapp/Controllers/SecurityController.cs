@@ -34,8 +34,9 @@ namespace sampleangularwebapp.Controllers
             try
             {
                 AppUserAuth auth = new AppUserAuth();
+
                 SecurityManager mgr = new SecurityManager(_context, _settings);
-            
+                
                 auth = mgr.ValidateUser(user);
                 if (auth.IsAuthenticated)
                 {

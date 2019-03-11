@@ -25,25 +25,28 @@ namespace sampleangularwebapp.Security
             AppUserAuth ret = new AppUserAuth();
             User authUser = null;
 
-            var sec = new SecurityService(_context);
+            using (var sec = new SecurityService(_context)) { 
 
-            authUser = sec.GetUser(user);
+                authUser = sec.GetUser(user);
             
-            if (authUser != null)
-            {
-                // Build User Security Object
-                ret = BuildUserAuthObject(authUser);
-            }
+                if (authUser != null)
+                {
+                    // Build User Security Object
+                    ret = BuildUserAuthObject(authUser);
+                }
 
-            return ret;
+                return ret;
+            }
         }
 
         protected List<UserClaim> GetUserClaims(User authUser)
         {
 
-            var sec = new SecurityService(_context);
-            
-            return sec.GetUserClaims(authUser);
+            using (var sec = new SecurityService(_context)) { 
+
+                return sec.GetUserClaims(authUser);
+
+            }
         }
 
         protected AppUserAuth BuildUserAuthObject(User authUser)

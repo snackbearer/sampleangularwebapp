@@ -31,12 +31,12 @@ namespace sampleangularwebapp.Controllers
         [HttpGet]
         public IEnumerable<iProduct> Get()
         {
-            
-            var data = new sampledata.Data.ProductsService(_context);
 
-            return data.GetProducts();
-            
-            
+            using (var data = new sampledata.Data.ProductsService(_context)) { 
+
+                return data.GetProducts();
+
+            }
 
         }
 
@@ -45,29 +45,24 @@ namespace sampleangularwebapp.Controllers
         [HttpGet("{id}", Name = "Get")]
         public iProduct Get(int id)
         {
-            
-            var data = new sampledata.Data.ProductsService(_context);
 
-            var p = data.GetProduct(id);
-            //var lst = new List<Product>();
-
-            //lst.Add(new Product { ProductId = p.ProductId, ProductCode = p.ProductCode, ProductName = p.ProductName, ProductCost = p.ProductCost });
-            return p; // lst.First();
+            using (var data = new sampledata.Data.ProductsService(_context)) { 
+                return data.GetProduct(id);
+            }
             
         }
-
-
-
+        
         // POST: api/Product
         [Authorize(Policy = "CanAccessProducts")]
         [HttpPost]
         public void Post([FromBody] iProduct value)
         {
-            
-            var data = new sampledata.Data.ProductsService(_context);
 
-            data.CreateProduct(new iProduct { ProductId = value.ProductId, ProductCode = value.ProductCode, ProductName = value.ProductName, ProductCost = value.ProductCost, ProductExpiryDate = value.ProductExpiryDate });
-            
+            using (var data = new sampledata.Data.ProductsService(_context)) {
+
+                data.CreateProduct(new iProduct { ProductId = value.ProductId, ProductCode = value.ProductCode, ProductName = value.ProductName, ProductCost = value.ProductCost, ProductExpiryDate = value.ProductExpiryDate });
+
+            }
         }
 
         // PUT: api/Product/5
@@ -75,10 +70,11 @@ namespace sampleangularwebapp.Controllers
         [HttpPut("{id}")]
         public void Put([FromBody] Product value, int id)
         {
-            var data = new sampledata.Data.ProductsService(_context);
+            using (var data = new sampledata.Data.ProductsService(_context)) { 
 
-            data.SetProduct(id, new iProduct { ProductId = value.ProductId, ProductCode = value.ProductCode, ProductName = value.ProductName, ProductCost = value.ProductCost, ProductExpiryDate = value.ProductExpiryDate });
+                data.SetProduct(id, new iProduct { ProductId = value.ProductId, ProductCode = value.ProductCode, ProductName = value.ProductName, ProductCost = value.ProductCost, ProductExpiryDate = value.ProductExpiryDate });
 
+            }
         }
 
         // DELETE: api/ApiWithActions/5
@@ -86,9 +82,9 @@ namespace sampleangularwebapp.Controllers
         [Authorize(Policy = "CanAccessProducts")]
         public void Delete(int id)
         {
-            var data = new sampledata.Data.ProductsService(_context);
-
-            data.DeleteProduct(id);
+            using (var data = new sampledata.Data.ProductsService(_context)) { 
+                data.DeleteProduct(id);
+            }
         }
     }
 }
