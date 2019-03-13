@@ -8,15 +8,15 @@ namespace sampledatamodel.Interfaces
     public interface IProductService
     {
         
-        IEnumerable<iProduct> GetProducts();
+        IEnumerable<IProduct> GetProducts();
 
-        iProduct GetProduct(int productID);
+        IProduct GetProduct(int productId);
 
         bool DeleteProduct(int productId);
 
-        iProduct SetProduct(int id, iProduct product);
+        IProduct SetProduct(int id, IProduct product);
 
-        iProduct CreateProduct(iProduct product);
+        IProduct CreateProduct(IProduct product);
 
     }
 }

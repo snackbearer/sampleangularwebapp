@@ -3,6 +3,7 @@ using sampledata.Models;
 using System;
 using Xunit;
 using System.Linq;
+using sampledatamodel.Models;
 
 namespace sampledatatest
 {
@@ -61,7 +62,7 @@ namespace sampledatatest
                 
             var data = new sampledata.Data.ProductsService(_context);
 
-            var newProduct = data.CreateProduct(new sampledatamodel.Models.iProduct { ProductId = id, ProductCode = Code, ProductName = Name, ProductCost = Cost, ProductExpiryDate = ExpiryDate });
+            var newProduct = data.CreateProduct(new IProduct { ProductId = id, ProductCode = Code, ProductName = Name, ProductCost = Cost, ProductExpiryDate = ExpiryDate });
 
             Assert.NotNull(newProduct);
 
@@ -78,9 +79,7 @@ namespace sampledatatest
             _context.Product.Add(new Product { ProductId = 9, ProductCode = "PRODUCT3", ProductName = "Product Name3", ProductCost = 1 });
             _context.SaveChanges();
             var productList = _context.Product.ToList();
-
-            var x = productList.Count();
-
+            
         }
 
         public void Dispose()

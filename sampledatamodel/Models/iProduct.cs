@@ -4,7 +4,7 @@ using System.Text;
 
 namespace sampledatamodel.Models
 {
-    public partial class iProduct
+    public partial class IProduct
     {
         public int ProductId { get; set; }
         public string ProductCode { get; set; }

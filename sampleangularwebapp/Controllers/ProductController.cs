@@ -29,7 +29,7 @@ namespace sampleangularwebapp.Controllers
         // GET: api/Product
         [Authorize(Policy = "CanAccessProducts")]
         [HttpGet]
-        public IEnumerable<iProduct> Get()
+        public IEnumerable<IProduct> Get()
         {
 
             using (var data = new sampledata.Data.ProductsService(_context)) { 
@@ -43,7 +43,7 @@ namespace sampleangularwebapp.Controllers
         // GET: api/Product/5
         [Authorize(Policy = "CanAccessProducts")]
         [HttpGet("{id}", Name = "Get")]
-        public iProduct Get(int id)
+        public IProduct Get(int id)
         {
 
             using (var data = new sampledata.Data.ProductsService(_context)) { 
@@ -55,12 +55,12 @@ namespace sampleangularwebapp.Controllers
         // POST: api/Product
         [Authorize(Policy = "CanAccessProducts")]
         [HttpPost]
-        public void Post([FromBody] iProduct value)
+        public void Post([FromBody] IProduct value)
         {
 
             using (var data = new sampledata.Data.ProductsService(_context)) {
 
-                data.CreateProduct(new iProduct { ProductId = value.ProductId, ProductCode = value.ProductCode, ProductName = value.ProductName, ProductCost = value.ProductCost, ProductExpiryDate = value.ProductExpiryDate });
+                data.CreateProduct(new IProduct { ProductId = value.ProductId, ProductCode = value.ProductCode, ProductName = value.ProductName, ProductCost = value.ProductCost, ProductExpiryDate = value.ProductExpiryDate });
 
             }
         }
@@ -72,7 +72,7 @@ namespace sampleangularwebapp.Controllers
         {
             using (var data = new sampledata.Data.ProductsService(_context)) { 
 
-                data.SetProduct(id, new iProduct { ProductId = value.ProductId, ProductCode = value.ProductCode, ProductName = value.ProductName, ProductCost = value.ProductCost, ProductExpiryDate = value.ProductExpiryDate });
+                data.SetProduct(id, new IProduct { ProductId = value.ProductId, ProductCode = value.ProductCode, ProductName = value.ProductName, ProductCost = value.ProductCost, ProductExpiryDate = value.ProductExpiryDate });
 
             }
         }

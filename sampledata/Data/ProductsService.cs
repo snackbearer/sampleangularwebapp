@@ -17,10 +17,10 @@ namespace sampledata.Data
             _context = context;
         }
 
-        public IEnumerable<iProduct> GetProducts()
+        public IEnumerable<IProduct> GetProducts()
         {
             
-            var products = _context.Product.Select(p => new iProduct
+            var products = _context.Product.Select(p => new IProduct
             {
                 ProductId = p.ProductId,
                 ProductCode = p.ProductCode,
@@ -33,12 +33,12 @@ namespace sampledata.Data
 
         }
 
-        public iProduct GetProduct(int productID)
+        public IProduct GetProduct(int productID)
         {
             
             return _context.Product.Where(p => p.ProductId == productID)
                 .Select(p=>
-                 new iProduct
+                 new IProduct
                 {
                     ProductId = p.ProductId,
                     ProductCode = p.ProductCode,
@@ -62,7 +62,7 @@ namespace sampledata.Data
         
 
         
-        public iProduct CreateProduct(iProduct product)
+        public IProduct CreateProduct(IProduct product)
         {
             Product setproduct;
             
@@ -72,7 +72,7 @@ namespace sampledata.Data
 
             _context.SaveChanges();
 
-            return new iProduct
+            return new IProduct
             {
                 ProductId = setproduct.ProductId,
                 ProductCode = setproduct.ProductCode,
@@ -83,7 +83,7 @@ namespace sampledata.Data
 
         }
 
-        public iProduct SetProduct(int id, iProduct product)
+        public IProduct SetProduct(int id, IProduct product)
         {
 
             Product setproduct;
@@ -96,7 +96,7 @@ namespace sampledata.Data
 
             _context.SaveChanges();
 
-            return new iProduct { ProductId = setproduct.ProductId,
+            return new IProduct { ProductId = setproduct.ProductId,
                 ProductCode = setproduct.ProductCode,
                 ProductName = setproduct.ProductName,
                 ProductCost = setproduct.ProductCost,
