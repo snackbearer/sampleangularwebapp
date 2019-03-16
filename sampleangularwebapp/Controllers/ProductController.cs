@@ -29,13 +29,13 @@ namespace sampleangularwebapp.Controllers
         // GET: api/Product
         [Authorize(Policy = "CanAccessProducts")]
         [HttpGet]
-        public IEnumerable<IProduct> Get()
+        public async Task<List<IProduct>> Get()
         {
 
             using (var data = new sampledata.Data.ProductsService(_context)) { 
 
-                return data.GetProducts();
-
+                return await data.GetProductsAsync();
+                
             }
 
         }

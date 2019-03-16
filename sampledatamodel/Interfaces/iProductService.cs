@@ -2,14 +2,16 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace sampledatamodel.Interfaces
 {
     public interface IProductService
     {
-        
-        IEnumerable<IProduct> GetProducts();
 
+        List<IProduct> GetProducts();
+        Task<List<IProduct>> GetProductsAsync();
+        
         IProduct GetProduct(int productId);
 
         bool DeleteProduct(int productId);

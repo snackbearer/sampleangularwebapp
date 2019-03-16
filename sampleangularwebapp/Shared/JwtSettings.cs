@@ -1,4 +1,4 @@
-namespace sampledata.Models
+namespace sampleangularwebapp.Security
 {
     public class JwtSettings
     {

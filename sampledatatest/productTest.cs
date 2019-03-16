@@ -29,7 +29,7 @@ namespace sampledatatest
 
 
         [Fact]
-        public void hasProducts()
+        public void HasProducts()
         {
             var data = new sampledata.Data.ProductsService(_context);
 
@@ -43,7 +43,7 @@ namespace sampledatatest
         [InlineData(7)]
         [InlineData(8)]
         [InlineData(9)]
-        public void hasProduct(int id)
+        public void HasProduct(int id)
         {
             var data = new sampledata.Data.ProductsService(_context);
 
@@ -56,7 +56,7 @@ namespace sampledatatest
         [InlineData(1,"REDHAT","Red Hat",34) ]
         [InlineData(2,"BLUEHAT", "Blue Hat", 55)]
         [InlineData(3, "GREENSHOES", "Green Shoes", 100)]
-        public void addProduct(int id, string Code, string Name, decimal Cost)
+        public void AddProduct(int id, string Code, string Name, decimal Cost)
         {
             var ExpiryDate = DateTime.Now.AddMonths(5);
                 
